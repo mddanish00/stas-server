@@ -1,0 +1,37 @@
+[project]
+name = "stas-server"
+version = "0.12.4"
+description = "Alternative standalone server for Sugoi Translator."
+authors = [
+    { name = "Muhd. Danial Danish Roslan", email = "distantwaterstream@gmail.com" }
+]
+dependencies = [
+    "bottle>=0.12.25",
+    "ctranslate2>=4.2.1",
+    "sentencepiece>=0.2.0",
+    "click>=8.1.7",
+    "regex>=2024.4.28",
+    "tornado>=6.4.1",
+    "pythonmonkey>=0.8.0",
+]
+readme = "README.md"
+requires-python = ">= 3.9"
+license = { text = "MIT" }
+
+[project.scripts]
+"stas-server" = "stas_server:cli"
+"stas-config" = "stas_server:config_cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stas_server"]
