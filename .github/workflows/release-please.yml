@@ -14,5 +14,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v4
+        id: release
         with:
           release-type: python
+          token: ${{ secrets.ACTION_SECRET }}
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
+      - uses: eifinger/setup-rye@v4
+        with:
+          enable-cache: true
+        if: ${{ steps.release.outputs.release_created }}
+      - run: rye sync
+        if: ${{ steps.release.outputs.release_created }}
+      - run: rye build -c --wheel
+        if: ${{ steps.release.outputs.release_created }}
+      - run: gh release upload ${{ steps.release.outputs.tag_name }} ./dist/stas_server-${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}-py3-none-any.whl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ steps.release.outputs.release_created }}
