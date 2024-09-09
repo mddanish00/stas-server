@@ -20,7 +20,6 @@ license = { text = "MIT" }
 
 [project.scripts]
 "stas-server" = "stas_server:cli"
-"stas-config" = "stas_server:config_cli"
 
 [build-system]
 requires = ["hatchling"]
