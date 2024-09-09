@@ -11,15 +11,17 @@ logging.basicConfig(
 )
 log_server = logging.getLogger("Server")
 
-CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 
-
-@click.command(context_settings=CONTEXT_SETTINGS, help="Start this translation server.")
+@click.command(
+    context_settings=dict(help_option_names=["-h", "--help"]),
+    help="Start this translation server.",
+)
 @click.version_option(None, "-v", "--version", message="%(version)s")
 @click.option("--cuda", default=False, is_flag=True, help="Enable CUDA.")
 @click.option(
     "--ct2_dir",
     required=True,
+    default="./ct2",
     help="Path to ct2 folder.",
     type=click.Path(exists=True, file_okay=False, dir_okay=True, resolve_path=True),
 )
