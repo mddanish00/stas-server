@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.1](https://github.com/mddanish00/stas-server/compare/v0.14.0...v0.14.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* remove stas-config script ([6263236](https://github.com/mddanish00/stas-server/commit/6263236d7fd69caa6d446e75b0cfbd4a226c452e))
+
 ## [0.14.0](https://github.com/mddanish00/stas-server/compare/v0.13.1...v0.14.0) (2024-09-09)
 
 
