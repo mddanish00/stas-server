@@ -20,11 +20,11 @@ aiosignal==1.3.1
     # via aiohttp
 attrs==24.2.0
     # via aiohttp
-bottle==0.12.25
+bottle==0.13.1
     # via stas-server
 brotli==1.1.0
     # via aiohttp
-cffi==1.17.0
+cffi==1.17.1
     # via pycares
 click==8.1.7
     # via stas-server
@@ -38,15 +38,15 @@ idna==3.8
 multidict==6.0.5
     # via aiohttp
     # via yarl
-numpy==2.1.0
+numpy==2.1.1
     # via ctranslate2
-pminit==0.8.0
+pminit==0.8.1
     # via pythonmonkey
 pycares==4.4.0
     # via aiodns
 pycparser==2.22
     # via cffi
-pythonmonkey==0.8.0
+pythonmonkey==0.8.1
     # via stas-server
 pyyaml==6.0.2
     # via ctranslate2
@@ -54,9 +54,9 @@ regex==2024.7.24
     # via stas-server
 sentencepiece==0.2.0
     # via stas-server
-setuptools==74.0.0
+setuptools==74.1.2
     # via ctranslate2
 tornado==6.4.1
     # via stas-server
-yarl==1.9.6
+yarl==1.11.0
     # via aiohttp
