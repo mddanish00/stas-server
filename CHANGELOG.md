@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.2](https://github.com/mddanish00/stas-server/compare/v0.14.1...v0.14.2) (2024-09-09)
+
+
+### Documentation
+
+* update README.md ([1e47610](https://github.com/mddanish00/stas-server/commit/1e476105981611b62da8e6c41640c8e4af78deb8))
+
 ## [0.14.1](https://github.com/mddanish00/stas-server/compare/v0.14.0...v0.14.1) (2024-09-09)
 
 
