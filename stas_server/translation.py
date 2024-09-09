@@ -4,7 +4,6 @@ import time
 from pathlib import Path
 from typing import Pattern
 
-import ctranslate2
 import regex as re
 import sentencepiece as spm
 from ctranslate2 import Translator
@@ -60,7 +59,7 @@ def setup_translation(cuda: bool = False, ct2_dir: str = "ct2"):
     else:
         device = "cpu"
 
-    translator = ctranslate2.Translator(
+    translator = Translator(
         model_path=(ctr2_dir_path / model_dir_path).absolute().__str__(),
         device=device,
         inter_threads=os.cpu_count(),
