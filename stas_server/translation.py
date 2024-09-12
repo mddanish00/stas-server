@@ -33,10 +33,6 @@ model_dir_path = Path("ct2_models")
 sp_source_model_path = Path("spmModels", "spm.ja.nopretok.model")
 sp_target_model_path = Path("spmModels", "spm.en.nopretok.model")
 
-# CT2 Options
-beam_size = 5
-num_hypotheses = 1
-
 translator: Translator | None = None
 spe = spm.SentencePieceProcessor()
 spd = spm.SentencePieceProcessor()
@@ -56,15 +52,21 @@ def setup_translation(cuda: bool = False, ct2_dir: str = "ct2"):
 
     if cuda is True:
         device = "cuda"
+        compute_type = "default"
+        inter_threads=os.cpu_count()
+        intra_threads=0
     else:
         device = "cpu"
+        compute_type = "auto"
+        inter_threads=32
+        intra_threads=1
 
     translator = Translator(
         model_path=(ctr2_dir_path / model_dir_path).absolute().__str__(),
         device=device,
-        inter_threads=os.cpu_count(),
-        intra_threads=0,
-        compute_type="auto",  # default set it to none
+        inter_threads=inter_threads,
+        intra_threads=intra_threads,
+        compute_type=compute_type,
     )
 
 
@@ -72,8 +74,8 @@ def core_translator(text_list: list[str]):
     text_list = spe.Encode(text_list, out_type=str)
     result = translator.translate_batch(
         source=text_list,
-        beam_size=beam_size,
-        num_hypotheses=num_hypotheses,
+        beam_size=5,
+        num_hypotheses=1,
         no_repeat_ngram_size=3,
     )
     return [str(spd.Decode(result[i].hypotheses[0])) for i in range(len(result))]
