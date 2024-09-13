@@ -1,3 +1,4 @@
+from functools import cache
 import logging
 import os
 import time
@@ -53,13 +54,13 @@ def setup_translation(cuda: bool = False, ct2_dir: str = "ct2"):
     if cuda is True:
         device = "cuda"
         compute_type = "default"
-        inter_threads=os.cpu_count()
-        intra_threads=0
+        inter_threads = os.cpu_count()
+        intra_threads = 0
     else:
         device = "cpu"
         compute_type = "auto"
-        inter_threads=32
-        intra_threads=1
+        inter_threads = 32
+        intra_threads = 1
 
     translator = Translator(
         model_path=(ctr2_dir_path / model_dir_path).absolute().__str__(),
@@ -70,6 +71,7 @@ def setup_translation(cuda: bool = False, ct2_dir: str = "ct2"):
     )
 
 
+@cache
 def core_translator(text_list: list[str]):
     text_list = spe.Encode(text_list, out_type=str)
     result = translator.translate_batch(
