@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.15.0](https://github.com/mddanish00/stas-server/compare/v0.14.2...v0.15.0) (2024-09-13)
+
+
+### Features
+
+* add cache to core_translator ([6c1f534](https://github.com/mddanish00/stas-server/commit/6c1f5343a7568c53b9d5cad65da6908d0e728721))
+* properly set correct options for cpu and cuda ([a601859](https://github.com/mddanish00/stas-server/commit/a6018590924889c67c799672c12eecce24bad124))
+* set new descriptive help message ([93d42c4](https://github.com/mddanish00/stas-server/commit/93d42c4b7eeab79e7ca5c078faab12f29baea8b3))
+
+
+### Documentation
+
+* update docs ([b540383](https://github.com/mddanish00/stas-server/commit/b540383d3e934ac80f178cce9d40d711cd94057c))
+
 ## [0.14.2](https://github.com/mddanish00/stas-server/compare/v0.14.1...v0.14.2) (2024-09-09)
 
 
