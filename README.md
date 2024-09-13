@@ -17,20 +17,26 @@ The project is in active development.
 - [x] Only translate Japanese
 - [x] `Access-Control-Allow-Private-Network` header
 - [ ] XUAT Placeholder support
-- [ ] CUDA support
+- [X] CUDA support (not tested because I don't have Nvidia GPU)
 - [ ] Detailed documentation
 
-## Installation
+## User Guide
 
-Make sure to use Python 3.9 and above. Python 3.12 is recommended.
+### Requirements
 
-Node is also required. Make sure to use the latest major LTS version or higher. Only used during installation.
+- Sugoi Japanese Toolkit from [MingShiba](https://www.patreon.com/mingshiba) with CudaInstallForToolKit from Sugoi Translator Discord if using version lower than V7 and below. Make sure to take note of the path to ct2 folder.
+
+- Make sure to use Python 3.9 and above. Python 3.12 is recommended.
+
+- Node is also required. Make sure to use the latest major LTS version or higher. Only used during installation.
+
+### Installation
 
 This project is not intended as a library, so installation through `pipx` or `uv` is recommended.
 
 In the future, the package will be published to [pypi](https://pypi.org/) for easier installation. No guarantee through.
 
-Download the wheel in the [RELEASES](https://github.com/mddanish00/stas-server/releases) and install the package.
+Download the wheel in the [Releases](https://github.com/mddanish00/stas-server/releases) and install the package.
 
 #### Using pipx
 
@@ -61,6 +67,29 @@ Same as installation.
 uv tool install ./stas_server-x.x.x-py3-none-any.whl
 ```
 
+### Running Server
+
+```
+Usage: stas-server [OPTIONS] [PORT]
+
+  Run stas-server, an alternative standalone translation server for Sugoi
+  Translator.
+
+Options:
+  -v, --version        Show the version and exit.
+  --cuda               Enable CUDA.
+  --ct2_dir DIRECTORY  Path to ct2 folder.  [required]
+  -h, --help           Show this message and exit.
+```
+
+#### Options
+
+|Name|Default|Description|
+|----|-------|-----------|
+|port|`14366`|Port of the server.|
+|cuda|`false`|Enable CUDA support.|
+|ct2_dir|`./ct2`|Path to ct2 models directory. By default, the program will use the folder named `ct2` in the current working directory.|
+
 ## Development
 
 This project is developed using the latest Python and managed by Rye.
@@ -68,6 +97,8 @@ This project is developed using the latest Python and managed by Rye.
 To start developing for this project, make sure to install Rye. It will automatically download Rye-managed Python. It will not clash with your system Python because it is only used for this project.
 
 Refer to [Rye official docs](https://rye.astral.sh/guide/installation) for the installation instructions.
+
+Node also needed during installation because this project is using, [PythonMonkey](https://github.com/Distributive-Network/PythonMonkey). The latest Node LTS is used during development.
 
 Initialize venv and install dependencies.
 
