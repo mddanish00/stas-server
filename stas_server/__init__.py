@@ -14,7 +14,7 @@ log_server = logging.getLogger("Server")
 
 @click.command(
     context_settings=dict(help_option_names=["-h", "--help"]),
-    help="Start this translation server.",
+    help="Run stas-server, an alternative standalone translation server for Sugoi Translator.",
 )
 @click.version_option(None, "-v", "--version", message="%(version)s")
 @click.option("--cuda", default=False, is_flag=True, help="Enable CUDA.")
