@@ -1,11 +1,18 @@
 import pythonmonkey as pm
 import regex as re
 
+from stas_server.util import lru_cache_ext
+
 pm.eval('const g=new Intl.Segmenter("ja-JP",{granularity:"sentence"});')
 
-split_jp = pm.eval("text=>Array.from(g.segment(text)).map(s=>s.segment);")
+split_jp_core = pm.eval("text=>Array.from(g.segment(text)).map(s=>s.segment);")
 
 newline_regex = re.compile(r"(\n+)")
+
+
+@lru_cache_ext(maxsize=None)
+def split_jp(text: str):
+    return split_jp_core(text)
 
 
 def split_sentences_in_batch(text_list: list[str]):
