@@ -5,7 +5,7 @@ from typing import Callable
 
 from bottle import Bottle, request, response
 
-from stas_server.fringe_list_util import (
+from stas_server.util import (
     split_list_by_condition,
     recombine_split_list,
 )

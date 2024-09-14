@@ -9,7 +9,7 @@ import regex as re
 import sentencepiece as spm
 from ctranslate2 import Translator
 
-from stas_server.fringe_list_util import (
+from stas_server.util import (
     split_list_by_condition,
     flatten_2d_list,
     recombine_split_list,
