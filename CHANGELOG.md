@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.17.0](https://github.com/mddanish00/stas-server/compare/v0.16.0...v0.17.0) (2024-09-14)
+
+
+### Features
+
+* add support of optionally disable cache ([dd24918](https://github.com/mddanish00/stas-server/commit/dd249187c32f47391c9f5a56efd9ef13ad960181))
+
+
+### Bug Fixes
+
+* split_list_by_condition not used properly for filtering non-Japanese ([b6fa91e](https://github.com/mddanish00/stas-server/commit/b6fa91e41c2e38d2683a4a6cf1af299ca38a7181))
+
 ## [0.16.0](https://github.com/mddanish00/stas-server/compare/v0.15.0...v0.16.0) (2024-09-14)
 
 
