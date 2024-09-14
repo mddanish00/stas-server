@@ -10,6 +10,7 @@ import sentencepiece as spm
 from ctranslate2 import Translator
 
 from stas_server.util import (
+    lru_cache_ext,
     split_list_by_condition,
     flatten_2d_list,
     recombine_split_list,
@@ -71,7 +72,7 @@ def setup_translation(cuda: bool = False, ct2_dir: str = "ct2"):
     )
 
 
-@cache
+@lru_cache_ext(maxsize=None)
 def core_translator(text_list: list[str]):
     text_list = spe.Encode(text_list, out_type=str)
     result = translator.translate_batch(
