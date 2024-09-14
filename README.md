@@ -19,6 +19,7 @@ The project is in active development.
 - [ ] XUAT Placeholder support
 - [X] CUDA support (not tested because I don't have Nvidia GPU)
 - [ ] Detailed documentation
+- [X] Cache support when running (Will reset when the server is shutdown)
 
 ## User Guide
 
