@@ -87,21 +87,25 @@ def lru_cache_ext(
 
             @classmethod
             def __call__(cls, *args: PT.args, **kwargs: PT.kwargs) -> RT:
-                __hash = hashfunc(
-                    (
-                        id(func),
-                        *[hashfunc(a) for a in args],
-                        *[(hashfunc(k), hashfunc(v)) for k, v in kwargs.items()],
+                if kwargs.get("enable_cache"):
+                    kwargs.pop("enable_cache")
+                    __hash = hashfunc(
+                        (
+                            id(func),
+                            *[hashfunc(a) for a in args],
+                            *[(hashfunc(k), hashfunc(v)) for k, v in kwargs.items()],
+                        )
                     )
-                )
 
-                cls.args = args
-                cls.kwargs = kwargs
+                    cls.args = args
+                    cls.kwargs = kwargs
 
-                cls.cache_info = cls.cached_func.cache_info
-                cls.cache_clear = cls.cached_func.cache_clear
+                    cls.cache_info = cls.cached_func.cache_info
+                    cls.cache_clear = cls.cached_func.cache_clear
 
-                return cls.cached_func(__hash)
+                    return cls.cached_func(__hash)
+                else:
+                    return func(args, kwargs)
 
         return _lru_cache_ext_wrapper()
 

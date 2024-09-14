@@ -1,4 +1,3 @@
-from functools import cache
 import logging
 import os
 import time
@@ -84,19 +83,19 @@ def core_translator(text_list: list[str]):
     return [str(spd.Decode(result[i].hypotheses[0])) for i in range(len(result))]
 
 
-def common_translator(batch_content: list[str]):
+def common_translator(batch_content: list[str], enable_cache: bool):
     batch_content = [pre_clean(c) for c in batch_content]
     original_whole_state_list = [get_original_state(c) for c in batch_content]
     batch_content = [
         strip_bracket(c) if original_whole_state_list[i][0] else c
         for i, c in enumerate(batch_content)
     ]
-    in_queue_list, in_queue_map = split_sentences_in_batch(batch_content)
+    in_queue_list, in_queue_map = split_sentences_in_batch(batch_content, enable_cache)
 
     if len(in_queue_list) > 1:
         log_translation.info(f"Text In Queue: {in_queue_list}")
         in_queue_state = [get_original_state(q) for q in in_queue_list]
-        result_list = core_translator(in_queue_list)
+        result_list = core_translator(in_queue_list, enable_cache=enable_cache)
         log_translation.info(f"Result In Queue: {result_list}")
         result_list = [post_clean(r) for r in result_list]
         result_list = [
@@ -111,7 +110,7 @@ def common_translator(batch_content: list[str]):
             for i, r in enumerate(result_list)
         ]
     else:
-        result_list = core_translator(in_queue_list)
+        result_list = core_translator(in_queue_list, enable_cache=enable_cache)
         result_list = [post_clean(result_list[0])]
         result = restore_original_state(
             result_list[0],
@@ -123,14 +122,14 @@ def common_translator(batch_content: list[str]):
     return result_list
 
 
-def translate(content: str):
+def translate(content: str, enable_cache: bool):
     log_translation.info(f"Text: {content}")
     start = time.time()
 
     batch_content, leftover, list_index_newline = split_list_by_condition(
         split_newlines(content), check_if_not_newline
     )
-    result_list = common_translator(batch_content)
+    result_list = common_translator(batch_content, enable_cache)
     result_list = recombine_split_list(result_list, leftover, list_index_newline)
     result = "".join(result_list)
 
@@ -141,7 +140,7 @@ def translate(content: str):
     return result
 
 
-def translate_batch(content: list[str]):
+def translate_batch(content: list[str], enable_cache: bool):
     batch_size = len(content)
     for i, t in enumerate(content):
         log_translation.info(f"Text Batch {i + 1} of {batch_size}: {t}")
@@ -152,7 +151,7 @@ def translate_batch(content: list[str]):
     batch_content, leftover, list_index_newline = split_list_by_condition(
         batch_content, check_if_not_newline
     )
-    result_list = common_translator(batch_content)
+    result_list = common_translator(batch_content, enable_cache)
     result_list = recombine_split_list(result_list, leftover, list_index_newline)
     result_list_2d = deflate_flat_list(result_list, list_index_2d)
     result_list = ["".join(r) for r in result_list_2d]

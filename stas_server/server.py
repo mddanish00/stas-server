@@ -30,10 +30,11 @@ def route(**kwargs):
 
 
 def run_server(
-    translate_func: Callable[[str], str],
-    translate_batch_func: Callable[[list[str]], list[str]],
+    translate_func: Callable[[str, bool], str],
+    translate_batch_func: Callable[[list[str], bool], list[str]],
     check_func: Callable[[str], bool],
     port: int = 14366,
+    enable_cache: bool = True,
 ):
     @app.hook("after_request")
     def enable_cors():
@@ -61,10 +62,10 @@ def run_server(
             log_server_bottle.info("Receive content from server")
             if check_func(content):
                 log_translation.info("Text is Japanese.")
-                result = translate_func(content)
+                result = translate_func(content, enable_cache)
                 return json.dumps(result)
             else:
-                log_translation.info(f"Text is not Japanese.")
+                log_translation.info("Text is not Japanese.")
                 return json.dumps(content)
 
         if message == "translate batch":
@@ -73,11 +74,11 @@ def run_server(
 
             s, l, i = split_list_by_condition(content, check_func)
             if len(s) == 0:
-                log_translation.info(f"All text in the batch are not Japanese.")
+                log_translation.info("All text in the batch are not Japanese.")
                 return json.dumps(content)
             else:
-                log_translation.info(f"Japanese text found in the batch.")
-                result = translate_batch_func(content)
+                log_translation.info("Japanese text found in the batch.")
+                result = translate_batch_func(content, enable_cache)
                 final_result = recombine_split_list(result, l, i)
                 return json.dumps(final_result)
 
