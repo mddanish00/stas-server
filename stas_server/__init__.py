@@ -18,6 +18,7 @@ log_server = logging.getLogger("Server")
 )
 @click.version_option(None, "-v", "--version", message="%(version)s")
 @click.option("--cuda", default=False, is_flag=True, help="Enable CUDA.")
+@click.option("--no-cache", default=False, is_flag=True, help="Disable cache.")
 @click.option(
     "--ct2_dir",
     required=True,
@@ -26,7 +27,7 @@ log_server = logging.getLogger("Server")
     type=click.Path(exists=True, file_okay=False, dir_okay=True, resolve_path=True),
 )
 @click.argument("port", default=14366)
-def cli(cuda, ct2_dir, port):
+def cli(cuda, ct2_dir, port, no_cache):
     log_server.info(f"stas-server - v{importlib.metadata.version('stas-server')}")
     translation.setup_translation(cuda, ct2_dir)
     server.run_server(
@@ -34,4 +35,5 @@ def cli(cuda, ct2_dir, port):
         translation.translate_batch,
         translation.check_if_japanese_in_string,
         port,
+        not no_cache,
     )

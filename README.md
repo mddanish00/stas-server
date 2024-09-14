@@ -79,6 +79,7 @@ Usage: stas-server [OPTIONS] [PORT]
 Options:
   -v, --version        Show the version and exit.
   --cuda               Enable CUDA.
+  --no-cache           Disable cache.
   --ct2_dir DIRECTORY  Path to ct2 folder.  [required]
   -h, --help           Show this message and exit.
 ```

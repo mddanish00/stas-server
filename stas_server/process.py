@@ -10,17 +10,15 @@ split_jp_core = pm.eval("text=>Array.from(g.segment(text)).map(s=>s.segment);")
 newline_regex = re.compile(r"(\n+)")
 
 
-@lru_cache_ext(maxsize=None)
-def split_jp(text: str):
-    return split_jp_core(text)
+split_jp = lru_cache_ext(maxsize=None)(split_jp_core)
 
 
-def split_sentences_in_batch(text_list: list[str]):
+def split_sentences_in_batch(text_list: list[str], enable_cache: bool):
     final_text_list: list[str] = []
     text_map: list[int] = []
 
     for text in text_list:
-        split_text_list = [str(i) for i in split_jp(text)]
+        split_text_list = [str(i) for i in split_jp(text, enable_cache=enable_cache)]
         final_text_list.extend(split_text_list)
         text_map.append(len(split_text_list))
 
