@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.16.0](https://github.com/mddanish00/stas-server/compare/v0.15.0...v0.16.0) (2024-09-14)
+
+
+### Features
+
+* add lru_cache_ext to util ([c942938](https://github.com/mddanish00/stas-server/commit/c942938a5ea6b09f03522a73106848c4d3a39cc5))
+* apply lru_cache_ext to split_jp ([f854889](https://github.com/mddanish00/stas-server/commit/f8548893c5044d3add64a56a1e77dd28b2e80710))
+
+
+### Bug Fixes
+
+* unhashable error when cache applied ([9e213fd](https://github.com/mddanish00/stas-server/commit/9e213fd144dc448de4addcfffb145fc3c14ff479))
+
+
+### Documentation
+
+* update docs ([a9600b2](https://github.com/mddanish00/stas-server/commit/a9600b298c789ecdbb4cac74abb47e7cf9a69f96))
+
 ## [0.15.0](https://github.com/mddanish00/stas-server/compare/v0.14.2...v0.15.0) (2024-09-13)
 
 
