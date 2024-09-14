@@ -72,14 +72,14 @@ def run_server(
             content = data.get("batch")
             log_server_bottle.info("Receive content batch from server")
 
-            s, l, i = split_list_by_condition(content, check_func)
-            if len(s) == 0:
+            sp, le, ix = split_list_by_condition(content, check_func)
+            if len(sp) == 0:
                 log_translation.info("All text in the batch are not Japanese.")
                 return json.dumps(content)
             else:
                 log_translation.info("Japanese text found in the batch.")
-                result = translate_batch_func(content, enable_cache)
-                final_result = recombine_split_list(result, l, i)
+                result = translate_batch_func(sp, enable_cache)
+                final_result = recombine_split_list(result, le, ix)
                 return json.dumps(final_result)
 
         if message == "close server":
