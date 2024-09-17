@@ -105,7 +105,9 @@ def lru_cache_ext(
 
                     return cls.cached_func(__hash)
                 else:
-                    return func(args, kwargs)
+                    print(*args)
+                    kwargs.pop("enable_cache")
+                    return func(*args, **kwargs)
 
         return _lru_cache_ext_wrapper()
 
