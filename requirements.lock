@@ -33,7 +33,7 @@ ctranslate2==4.4.0
 frozenlist==1.4.1
     # via aiohttp
     # via aiosignal
-idna==3.9
+idna==3.10
     # via yarl
 multidict==6.1.0
     # via aiohttp
@@ -54,7 +54,7 @@ regex==2024.9.11
     # via stas-server
 sentencepiece==0.2.0
     # via stas-server
-setuptools==74.1.2
+setuptools==75.1.0
     # via ctranslate2
 tornado==6.4.1
     # via stas-server
