@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.1](https://github.com/mddanish00/stas-server/compare/v0.17.0...v0.17.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* fix not properly pass args and kwargs when cache disabled ([539a501](https://github.com/mddanish00/stas-server/commit/539a50160b3de1c7bb9040f21d60375992d7f5ff))
+
 ## [0.17.0](https://github.com/mddanish00/stas-server/compare/v0.16.0...v0.17.0) (2024-09-14)
 
 
