@@ -8,7 +8,7 @@ Not affiliated with Sugoi Translator.
 
 The project is in active development.
 
-## Todo List
+## Todo List to v1.0.0 Release
 
 - [x] Async server (bottle.py with tornado)
 - [x] Multiline support
@@ -17,15 +17,20 @@ The project is in active development.
 - [x] Only translate Japanese
 - [x] `Access-Control-Allow-Private-Network` header
 - [ ] XUAT Placeholder support
-- [X] CUDA support (not tested because I don't have Nvidia GPU)
+- [ ] CUDA support (cannot test because I don't have Nvidia GPU)
 - [ ] Detailed documentation
-- [X] Cache support when running (Will reset when the server is shutdown)
+- [X] Cache support when running (Reset on Server Shutdown)
+- [X] New models directory support
 
 ## User Guide
 
 ### Requirements
 
-- Sugoi Japanese Toolkit from [MingShiba](https://www.patreon.com/mingshiba) with CudaInstallForToolKit from Sugoi Translator Discord if using version lower than V7 and below. Make sure to take note of the path to ct2 folder.
+- Sugoi Japanese Toolkit from [MingShiba](https://www.patreon.com/mingshiba). Need to apply CudaInstallForToolKit from Sugoi Translator Discord if using version lower than V7 and below. Starting from V8, ct2Model available by default. Make sure to take note of the path to models folder. 
+
+> For V8, the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/models`.
+
+> For V7 and below using CudaInstallForToolKit (you need to run this first), the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/ct2`. Inside `ct2` folder, `ct2_models` need to be renamed to `ct2Model`.
 
 - Make sure to use Python 3.9 and above. Python 3.12 is recommended.
 
@@ -77,11 +82,11 @@ Usage: stas-server [OPTIONS] [PORT]
   Translator.
 
 Options:
-  -v, --version        Show the version and exit.
-  --cuda               Enable CUDA.
-  --no-cache           Disable cache.
-  --ct2_dir DIRECTORY  Path to ct2 folder.  [required]
-  -h, --help           Show this message and exit.
+  -v, --version           Show the version and exit.
+  --cuda                  Enable CUDA.
+  --no-cache              Disable cache.
+  --models_dir DIRECTORY  Path to models folder.  [required]
+  -h, --help              Show this message and exit.
 ```
 
 #### Options
@@ -90,7 +95,7 @@ Options:
 |----|-------|-----------|
 |port|`14366`|Port of the server.|
 |cuda|`false`|Enable CUDA support.|
-|ct2_dir|`./ct2`|Path to ct2 models directory. By default, the program will use the folder named `ct2` in the current working directory.|
+|models_dir|`./models`|Path to models directory. By default, the program will use the folder named `models` in the current working directory.|
 
 ## Development
 
