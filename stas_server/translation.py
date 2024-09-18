@@ -30,7 +30,7 @@ from stas_server.process import (
 log_translation = logging.getLogger("Translation")
 
 # Paths
-model_dir_path = Path("ct2_models")
+ct2_model_dir_path = Path("ct2Model")
 sp_source_model_path = Path("spmModels", "spm.ja.nopretok.model")
 sp_target_model_path = Path("spmModels", "spm.en.nopretok.model")
 
@@ -44,12 +44,12 @@ def check_if_japanese_in_string(text: str) -> bool:
     return jp_regex.search(text) is not None
 
 
-def setup_translation(cuda: bool = False, ct2_dir: str = "ct2"):
+def setup_translation(cuda: bool = False, models_dir: str = "models"):
     global translator, spe, spd
 
-    ctr2_dir_path = Path(ct2_dir)
-    spe.LoadFromFile((ctr2_dir_path / sp_source_model_path).absolute().__str__())
-    spd.LoadFromFile((ctr2_dir_path / sp_target_model_path).absolute().__str__())
+    models_dir_path = Path(models_dir)
+    spe.LoadFromFile((models_dir_path / sp_source_model_path).absolute().__str__())
+    spd.LoadFromFile((models_dir_path / sp_target_model_path).absolute().__str__())
 
     if cuda is True:
         device = "cuda"
@@ -63,7 +63,7 @@ def setup_translation(cuda: bool = False, ct2_dir: str = "ct2"):
         intra_threads = 1
 
     translator = Translator(
-        model_path=(ctr2_dir_path / model_dir_path).absolute().__str__(),
+        model_path=(models_dir_path / ct2_model_dir_path).absolute().__str__(),
         device=device,
         inter_threads=inter_threads,
         intra_threads=intra_threads,
