@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/mddanish00/stas-server/compare/v0.17.1...v0.18.0) (2024-09-18)
+
+
+### Features
+
+* models dir support ([383a961](https://github.com/mddanish00/stas-server/commit/383a96120a7cd2e20d55f4a9d670787fa72c5ffa))
+
 ## [0.17.1](https://github.com/mddanish00/stas-server/compare/v0.17.0...v0.17.1) (2024-09-17)
 
 
