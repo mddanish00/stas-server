@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.1](https://github.com/mddanish00/stas-server/compare/v0.18.0...v0.18.1) (2024-09-22)
+
+
+### Bug Fixes
+
+* remove print statement from lru_cache_ext function ([f919605](https://github.com/mddanish00/stas-server/commit/f91960511320414080b3f186dc86fbfc12497ad4))
+
 ## [0.18.0](https://github.com/mddanish00/stas-server/compare/v0.17.1...v0.18.0) (2024-09-18)
 
 
