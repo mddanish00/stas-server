@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.19.0](https://github.com/mddanish00/stas-server/compare/v0.18.1...v0.19.0) (2024-10-05)
+
+
+### Features
+
+* update Japanese regex to use Unicode blocks ([88272b4](https://github.com/mddanish00/stas-server/commit/88272b41c19a49260e375e73a3c81db4f0b51d23))
+
+
+### Bug Fixes
+
+* ambiguous variable name ([e0f430c](https://github.com/mddanish00/stas-server/commit/e0f430c574e5464be6fcc082ee9baccfe8071e73))
+* disable strip_bracket on post_clean ([9190a04](https://github.com/mddanish00/stas-server/commit/9190a042a8ffaec5dec17f10c6098fefcf441ebb))
+* some newlines not interpreted correctly ([1364b9e](https://github.com/mddanish00/stas-server/commit/1364b9e3ce22cbc7410408ba04da975937a69d98))
+
 ## [0.18.1](https://github.com/mddanish00/stas-server/compare/v0.18.0...v0.18.1) (2024-09-22)
 
 
