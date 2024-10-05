@@ -101,7 +101,7 @@ def post_clean(text: str):
     text = re.sub(r"”\?", "?", text)
     text = text.strip()
 
-    text = strip_bracket(text)
+    # text = strip_bracket(text)
     text = text.strip()
 
     text = remove_in_text(
