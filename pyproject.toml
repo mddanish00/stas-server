@@ -1,6 +1,6 @@
 [project]
 name = "stas-server"
-version = "0.18.1"
+version = "0.19.0"
 description = "Alternative standalone server for Sugoi Translator."
 authors = [
     { name = "Muhd. Danial Danish Roslan", email = "distantwaterstream@gmail.com" }
