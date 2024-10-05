@@ -49,9 +49,9 @@ def deflate_flat_list[T](flat_list: list[T], list_index: list[int]):
 
 # Based on solution of this question on StackOverflow
 # https://stackoverflow.com/a/73517775
-def hash_list(l: list) -> int:
+def hash_list(li: list) -> int:
     __hash = 0
-    for i, e in enumerate(l):
+    for i, e in enumerate(li):
         __hash = hash((__hash, i, hash_item(e)))
     return __hash
 
