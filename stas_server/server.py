@@ -6,6 +6,7 @@ from typing import Callable
 from bottle import Bottle, request, response
 
 from stas_server.util import (
+    process_raw_string,
     split_list_by_condition,
     recombine_split_list,
 )
@@ -60,6 +61,8 @@ def run_server(
         if message == "translate sentences":
             content = data.get("content")
             log_server_bottle.info("Receive content from server")
+            
+            content = process_raw_string(content)
             if check_func(content):
                 log_translation.info("Text is Japanese.")
                 result = translate_func(content, enable_cache)
@@ -73,6 +76,7 @@ def run_server(
             log_server_bottle.info("Receive content batch from server")
 
             sp, le, ix = split_list_by_condition(content, check_func)
+            sp = list(map(process_raw_string, sp))
             if len(sp) == 0:
                 log_translation.info("All text in the batch are not Japanese.")
                 return json.dumps(content)

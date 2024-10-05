@@ -1,6 +1,9 @@
 from functools import _CacheInfo, lru_cache
 from typing import Any, Callable, Literal, ParamSpec, TypeVar
 
+def process_raw_string(text: str):
+    return text.replace(r'\n', '\n')
+
 
 def split_list_by_condition[T](obj_list: list[T], condition: Callable[[T], bool]):
     split_list: list[T] = []
