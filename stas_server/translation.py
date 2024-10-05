@@ -37,7 +37,10 @@ sp_target_model_path = Path("spmModels", "spm.en.nopretok.model")
 translator: Translator | None = None
 spe = spm.SentencePieceProcessor()
 spd = spm.SentencePieceProcessor()
-jp_regex: Pattern[str] = re.compile(r"([\p{IsHan}\p{IsHira}\p{IsKatakana}]+)")
+jp_regex: Pattern[str] = re.compile(
+    r"([\p{InCJKUnifiedIdeographs}\p{InCJKSymbolsandPunctuation}\p{InHiragana}\p{InKatakana}]+)"
+)
+
 
 
 def check_if_japanese_in_string(text: str) -> bool:
