@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.1](https://github.com/mddanish00/stas-server/compare/v0.19.0...v0.19.1) (2024-10-05)
+
+
+### Bug Fixes
+
+* fix some pre and post clean filters ([06c6f06](https://github.com/mddanish00/stas-server/commit/06c6f06d691611819af549202dc56b16c272cff6))
+
 ## [0.19.0](https://github.com/mddanish00/stas-server/compare/v0.18.1...v0.19.0) (2024-10-05)
 
 
