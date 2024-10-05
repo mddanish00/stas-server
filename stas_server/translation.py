@@ -42,7 +42,6 @@ jp_regex: Pattern[str] = re.compile(
 )
 
 
-
 def check_if_japanese_in_string(text: str) -> bool:
     return jp_regex.search(text) is not None
 
