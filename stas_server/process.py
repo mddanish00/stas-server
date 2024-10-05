@@ -54,7 +54,9 @@ def join_sentences_in_batch(text_list: list[str], text_map: list[int]):
 
 
 def get_original_state(text: str):
-    is_bracket = text.endswith("」") and text.startswith("「")
+    is_bracket = (text.endswith("」") and text.startswith("「")) or (
+        text.endswith("』") and text.startswith("『")
+    )
     is_period = text.endswith("。")
     return is_bracket, is_period
 
@@ -68,7 +70,10 @@ def restore_original_state(text: str, is_bracket: bool, is_period: bool):
     ):
         text = f"{text}."
 
-    if is_bracket:
+    if is_bracket and not (
+        (text.startswith("“") or text.startswith('"'))
+        and (text.endswith('"') or text.endswith("”"))
+    ):
         text = f'"{text}"'
 
     return text
@@ -90,6 +95,7 @@ def strip_bracket(text: str):
 def pre_clean(text: str):
     text = text.strip()
     text = text.strip("﻿")
+    text = re.sub(r"、$", "", text)
     return text
 
 
@@ -101,7 +107,11 @@ def post_clean(text: str):
     text = re.sub(r"”\?", "?", text)
     text = text.strip()
 
-    # text = strip_bracket(text)
+    if (text.startswith("“") or text.startswith('"')) and (
+        text.endswith('"') or text.endswith("”")
+    ):
+        text = strip_bracket(text)
+
     text = text.strip()
 
     text = remove_in_text(
