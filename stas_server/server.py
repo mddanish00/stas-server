@@ -61,7 +61,7 @@ def run_server(
         if message == "translate sentences":
             content = data.get("content")
             log_server_bottle.info("Receive content from server")
-            
+
             content = process_raw_string(content)
             if check_func(content):
                 log_translation.info("Text is Japanese.")
