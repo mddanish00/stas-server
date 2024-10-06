@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.2](https://github.com/mddanish00/stas-server/compare/v0.19.1...v0.19.2) (2024-10-06)
+
+
+### Bug Fixes
+
+* add extra bracket and trigger for each get_original_state ([d76b2d8](https://github.com/mddanish00/stas-server/commit/d76b2d8bf42432a3449ec51f6bfef48c0513488f))
+
 ## [0.19.1](https://github.com/mddanish00/stas-server/compare/v0.19.0...v0.19.1) (2024-10-05)
 
 
