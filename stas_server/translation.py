@@ -97,6 +97,10 @@ def common_translator(batch_content: list[str], enable_cache: bool):
     if len(in_queue_list) > 1:
         log_translation.info(f"Text In Queue: {in_queue_list}")
         in_queue_state = [get_original_state(q) for q in in_queue_list]
+        in_queue_list = [
+            strip_bracket(c) if in_queue_state[i][0] else c
+            for i, c in enumerate(in_queue_list)
+        ]
         result_list = core_translator(in_queue_list, enable_cache=enable_cache)
         log_translation.info(f"Result In Queue: {result_list}")
         result_list = [post_clean(r) for r in result_list]
