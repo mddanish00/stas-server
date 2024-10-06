@@ -88,7 +88,23 @@ def remove_in_text(pattern_list: list[re.Pattern[str] | str], text: str):
 
 def strip_bracket(text: str):
     return remove_in_text(
-        [r"^「", r"^”", r"^“", r'^"', r"^'", r"」$", r"“$", r"”$", r'"$', r"'$"], text
+        [
+            r"^「",
+            r"^”",
+            r"^“",
+            r'^"',
+            r"^'",
+            r"」$",
+            r"“$",
+            r"”$",
+            r'"$',
+            r"'$",
+            r"^「",
+            r"」$",
+            r"^『",
+            r"』$",
+        ],
+        text,
     )
 
 
