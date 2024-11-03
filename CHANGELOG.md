@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0](https://github.com/mddanish00/stas-server/compare/v0.19.2...v0.20.0) (2024-11-03)
+
+
+### Features
+
+* **server:** bind to all interfaces for accessibility ([c90cfcb](https://github.com/mddanish00/stas-server/commit/c90cfcba483114d11357f02cadeff3fb130444b4))
+
 ## [0.19.2](https://github.com/mddanish00/stas-server/compare/v0.19.1...v0.19.2) (2024-10-06)
 
 
