@@ -91,4 +91,4 @@ def run_server(
             sys.exit(0)
 
     log_server_bottle.info(f"Listening on http://localhost:{port}")
-    app.run(server="tornado", host="localhost", port=port, debug=False, quiet=True)
+    app.run(server="tornado", host="0.0.0.0", port=port, debug=False, quiet=True)
