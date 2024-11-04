@@ -75,7 +75,7 @@ def run_server(
             content = data.get("batch")
             log_server_bottle.info("Receive content batch from server")
 
-            if len(content):
+            if len(content) == 0:
                 log_translation.info("No text in the batch.")
                 return json.dumps(content)
 
