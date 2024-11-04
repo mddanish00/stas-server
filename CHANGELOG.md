@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.1](https://github.com/mddanish00/stas-server/compare/v0.20.0...v0.20.1) (2024-11-04)
+
+
+### Bug Fixes
+
+* :loud_sound: add correct warning if batch empty received ([62f37d7](https://github.com/mddanish00/stas-server/commit/62f37d77818b1811fab269b4847e7e63aa0e9efa))
+
 ## [0.20.0](https://github.com/mddanish00/stas-server/compare/v0.19.2...v0.20.0) (2024-11-03)
 
 
