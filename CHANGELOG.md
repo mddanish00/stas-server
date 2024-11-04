@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.2](https://github.com/mddanish00/stas-server/compare/v0.20.1...v0.20.2) (2024-11-04)
+
+
+### Bug Fixes
+
+* **server:** correct condition for empty content check ([0580022](https://github.com/mddanish00/stas-server/commit/058002283bab9aeae24420f93c9a4ca437a0d9be))
+
 ## [0.20.1](https://github.com/mddanish00/stas-server/compare/v0.20.0...v0.20.1) (2024-11-04)
 
 
