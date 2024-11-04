@@ -75,6 +75,10 @@ def run_server(
             content = data.get("batch")
             log_server_bottle.info("Receive content batch from server")
 
+            if len(content):
+                log_translation.info("No text in the batch.")
+                return json.dumps(content)
+
             sp, le, ix = split_list_by_condition(content, check_func)
             sp = list(map(process_raw_string, sp))
             if len(sp) == 0:
