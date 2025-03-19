@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.20.3](https://github.com/mddanish00/stas-server/compare/v0.20.2...v0.20.3) (2025-03-19)
+
+
+### Documentation
+
+* :memo: add Python 3.13 notice ([4a2196f](https://github.com/mddanish00/stas-server/commit/4a2196fe3f037ee085b5f5271e2de2758c12ff8c))
+* change mention of rye to uv ([4a2196f](https://github.com/mddanish00/stas-server/commit/4a2196fe3f037ee085b5f5271e2de2758c12ff8c))
+
 ## [0.20.2](https://github.com/mddanish00/stas-server/compare/v0.20.1...v0.20.2) (2024-11-04)
 
 
