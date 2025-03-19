@@ -2,7 +2,7 @@
 
 stas-server is an alternative standalone translation server for Sugoi Translator.
 
-stas-server name is an abbreviation of Sugoi Translator Alternative Standalone Server. 
+stas-server name is an abbreviation of Sugoi Translator Alternative Standalone Server.
 
 Not affiliated with Sugoi Translator.
 
@@ -17,22 +17,21 @@ The project is in active development.
 - [x] Only translate Japanese
 - [x] `Access-Control-Allow-Private-Network` header
 - [ ] XUAT Placeholder support
-- [ ] CUDA support (cannot test because I don't have Nvidia GPU)
+- [X] CUDA support (Tested)
 - [ ] Detailed documentation
 - [X] Cache support when running (Reset on Server Shutdown)
-- [X] New models directory support
+- [X] V8 and above models directory support
 
 ## User Guide
 
 ### Requirements
 
-- Sugoi Japanese Toolkit from [MingShiba](https://www.patreon.com/mingshiba). Need to apply CudaInstallForToolKit from Sugoi Translator Discord if using version lower than V7 and below. Starting from V8, ct2Model available by default. Make sure to take note of the path to models folder. 
+- Sugoi Japanese Toolkit from [MingShiba](https://www.patreon.com/mingshiba). Need to apply CudaInstallForToolKit from Sugoi Translator Discord if using version lower than V7 and below. Starting from V8, ct2Model available by default. Make sure to take note of the path to models folder.
 
-> For V8, the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/models`.
-
+> For V8 and above, the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/models`.  
 > For V7 and below using CudaInstallForToolKit (you need to run this first), the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/ct2`. Inside `ct2` folder, `ct2_models` need to be renamed to `ct2Model`.
 
-- Make sure to use Python 3.9 and above. Python 3.12 is recommended.
+- Make sure to use Python 3.9 and above. Python 3.12 is recommended. Python 3.13 and above still not supported.
 
 - Node is also required. Make sure to use the latest major LTS version or higher. Only used during installation.
 
@@ -55,6 +54,7 @@ pipx install ./stas_server-x.x.x-py3-none-any.whl
 ```commandline
 uv tool install ./stas_server-x.x.x-py3-none-any.whl
 ```
+
 ### Upgrade Server
 
 #### Using pipx
@@ -75,7 +75,7 @@ uv tool install ./stas_server-x.x.x-py3-none-any.whl
 
 ### Running Server
 
-```
+```cmd
 Usage: stas-server [OPTIONS] [PORT]
 
   Run stas-server, an alternative standalone translation server for Sugoi
@@ -99,30 +99,30 @@ Options:
 
 ## Development
 
-This project is developed using the latest Python and managed by Rye.
+This project is developed using the latest Python and managed by uv.
 
-To start developing for this project, make sure to install Rye. It will automatically download Rye-managed Python. It will not clash with your system Python because it is only used for this project.
+To start developing for this project, make sure to install uv. It will automatically download uv-managed Python if your system Python not 3.12. It will not clash with your system Python because it is only used for this project.
 
-Refer to [Rye official docs](https://rye.astral.sh/guide/installation) for the installation instructions.
+Refer to [uv official docs](https://docs.astral.sh/uv/getting-started/installation/) for the installation instructions.
 
 Node also needed during installation because this project is using, [PythonMonkey](https://github.com/Distributive-Network/PythonMonkey). The latest Node LTS is used during development.
 
 Initialize venv and install dependencies.
 
 ```commandline
-rye sync
+uv sync
 ```
 
 Launch and test the server.
 
 ```commandline
-rye run stas-server
+uv run stas-server
 ```
 
 Build the project wheel.
 
 ```commandline
-rye build -c --wheel
+uv build --wheel
 ```
 
 ## License
@@ -133,4 +133,4 @@ This project is licensed under the [MIT license](./LICENSE).
 
 - Thanks to [MingShiba](https://www.patreon.com/mingshiba) for creating the Sugoi Japanese Toolkit and making high-quality (still machine translation) available to enjoy many untranslated Japanese works.
 - Thanks to Tenerezza and bimbmsm on [Sugoi Toolkit Discord](https://discord.gg/XFbWSjMHJh) for CudaInstallForToolKit script for adding CT2 support. Some of the code is based on the included CT2 multiline server script.
-- Thanks to [Vin-meido](https://github.com/Vin-meido) for [Sugoi Translator XUAT](https://github.com/Vin-meido/XUnity-AutoTranslator-SugoiOfflineTranslatorEndpoint) support. Some of the code is based on the included server script.
+- Thanks to [Vin-meido](https://github.com/Vin-meido) for [Sugoi Translator XUAT](https://github.com/Vin-meido/XUnity-AutoTranslator-SugoiOfflineTranslatorEndpoint) support. Some of the code is based on the included server.py.
