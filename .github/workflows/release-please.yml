@@ -20,13 +20,14 @@ jobs:
           token: ${{ secrets.ACTION_SECRET }}
       - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.release_created }}
-      - uses: eifinger/setup-rye@v4
+      - uses: astral-sh/setup-uv@v5
         with:
           enable-cache: true
+          python-version: 3.12
         if: ${{ steps.release.outputs.release_created }}
-      - run: rye sync
+      - run: uv sync
         if: ${{ steps.release.outputs.release_created }}
-      - run: rye build -c --wheel
+      - run: uv build --wheel
         if: ${{ steps.release.outputs.release_created }}
       - run: gh release upload ${{ steps.release.outputs.tag_name }} ./dist/stas_server-${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}-py3-none-any.whl
         env:
