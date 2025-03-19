@@ -15,7 +15,7 @@ dependencies = [
     "pythonmonkey>=0.8.0",
 ]
 readme = "README.md"
-requires-python = ">= 3.9"
+requires-python = ">= 3.9, < 3.13"
 license = { text = "MIT" }
 
 [project.scripts]
@@ -25,7 +25,7 @@ license = { text = "MIT" }
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.rye]
+[tool.uv]
 managed = true
 dev-dependencies = []
 
