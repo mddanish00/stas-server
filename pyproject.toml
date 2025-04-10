@@ -12,7 +12,7 @@ dependencies = [
     "click>=8.1.7",
     "regex>=2024.4.28",
     "tornado>=6.4.1",
-    "pythonmonkey>=0.8.0",
+    "pyicu>=2.15",
 ]
 readme = "README.md"
 requires-python = ">= 3.9, < 3.13"

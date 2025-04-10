@@ -1,11 +1,24 @@
-import pythonmonkey as pm
+from icu import Locale, BreakIterator
 import regex as re
 
 from stas_server.util import lru_cache_ext
 
-pm.eval('const g=new Intl.Segmenter("ja-JP",{granularity:"sentence"});')
+locale = Locale("ja_JP")
+break_iterator = BreakIterator.createSentenceInstance(locale)
 
-split_jp_core = pm.eval("text=>Array.from(g.segment(text)).map(s=>s.segment);")
+
+def split_jp_core(text: str):
+    break_iterator.setText(text)
+    segmented_sentences: list[str] = []
+    last_pos = 0
+    for current_pos in break_iterator:
+        sentence = text[last_pos:current_pos].strip()
+        if sentence:
+            segmented_sentences.append(sentence)
+        last_pos = current_pos
+
+    return segmented_sentences
+
 
 newline_regex = re.compile(r"(\n+)")
 
