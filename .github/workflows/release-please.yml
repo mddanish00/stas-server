@@ -46,3 +46,4 @@ jobs:
           ref: main
         env:
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
+        if: ${{ steps.release.outputs.release_created }}
