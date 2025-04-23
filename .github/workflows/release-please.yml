@@ -17,7 +17,7 @@ jobs:
         id: release
         with:
           release-type: python
-          token: ${{ secrets.ACTION_SECRET }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.release_created }}
       - uses: astral-sh/setup-uv@v5
@@ -27,9 +27,22 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - run: uv sync
         if: ${{ steps.release.outputs.release_created }}
-      - run: uv build --wheel
+      - run: uv build
         if: ${{ steps.release.outputs.release_created }}
-      - run: gh release upload ${{ steps.release.outputs.tag_name }} ./dist/stas_server-${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}-py3-none-any.whl
+      - name: Upload Wheel and Source Distribution to Release
+        run: |
+          gh release upload ${{ steps.release.outputs.tag_name }} ./dist/stas_server-${{ steps.release.outputs.version }}.tar.gz
+          gh release upload ${{ steps.release.outputs.tag_name }} ./dist/stas_server-${{ steps.release.outputs.version }}-py3-none-any.whl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
+      - name: Trigger python-index Rebuilding
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/{owner}/{repo}/actions/workflows/{workflow}/dispatches
+          owner: mddanish00
+          repo: python-index
+          workflow: generate-index.yaml
+          ref: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
