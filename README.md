@@ -33,44 +33,44 @@ The project is in active development.
 
 - Make sure to use Python 3.9 and above. Python 3.12 is recommended. Python 3.13 and above still not supported.
 
-- Node is also required. Make sure to use the latest major LTS version or higher. Only used during installation.
-
 ### Installation
 
-This project is not intended as a library, so installation through `pipx` or `uv` is recommended.
+This project is not intended as a library, so installation through `uv` and `pipx` is recommended.
 
 In the future, the package will be published to [pypi](https://pypi.org/) for easier installation. No guarantee through.
 
-Download the wheel in the [Releases](https://github.com/mddanish00/stas-server/releases) and install the package.
+For now, use my Python Package Index as shown as below to install this package.
 
-#### Using pipx
+You can also directly download the wheel in the [Releases](https://github.com/mddanish00/stas-server/releases) and install the package.
 
-```commandline
-pipx install ./stas_server-x.x.x-py3-none-any.whl
-```
-
-#### Using uv
+#### Install using uv
 
 ```commandline
-uv tool install ./stas_server-x.x.x-py3-none-any.whl
+uv tool install stas-server --index https://mddanish00.github.io/python-index/simple
 ```
 
-### Upgrade Server
-
-#### Using pipx
-
-Because this package is not installed from [pypi](https://pypi.org/), to upgrade this package, your need to force pipx to install the new version.
+#### Install using pipx
 
 ```commandline
-pipx install --force ./stas_server-x.x.x-py3-none-any.whl
+pipx install stas-server --index-url https://mddanish00.github.io/python-index/simple
 ```
 
-#### Using uv
+### Upgrade Server (outdated; not tested with python-index yet)
+
+#### Upgrade using uv
 
 Same as installation.
 
 ```commandline
 uv tool install ./stas_server-x.x.x-py3-none-any.whl
+```
+
+#### Upgrade using pipx
+
+Because this package is not installed from [pypi](https://pypi.org/), to upgrade this package, your need to force pipx to install the new version.
+
+```commandline
+pipx install --force ./stas_server-x.x.x-py3-none-any.whl
 ```
 
 ### Running Server
@@ -105,9 +105,9 @@ To start developing for this project, make sure to install uv. It will automatic
 
 Refer to [uv official docs](https://docs.astral.sh/uv/getting-started/installation/) for the installation instructions.
 
-Node also needed during installation because this project is using, [PythonMonkey](https://github.com/Distributive-Network/PythonMonkey). The latest Node LTS is used during development.
+You need to make sure install ICU if in Linux yourself. For Windows, you need to use my python index to install PyICU.
 
-Initialize venv and install dependencies.
+Initialize the virtual environment and install dependencies.
 
 ```commandline
 uv sync
