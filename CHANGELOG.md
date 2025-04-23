@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.21.0](https://github.com/mddanish00/stas-server/compare/v0.20.3...v0.21.0) (2025-04-23)
+
+
+### Features
+
+* :zap: migrate from pythonmonkey to PyICU ([a9c659e](https://github.com/mddanish00/stas-server/commit/a9c659edd714dd2f41fd5d5e07ce7d538f3a1600))
+
+
+### Documentation
+
+* :memo: update about PyICU and python-index ([a6b3e74](https://github.com/mddanish00/stas-server/commit/a6b3e74d01181aee9fa8f87eee235252e1d6bb49))
+
 ## [0.20.3](https://github.com/mddanish00/stas-server/compare/v0.20.2...v0.20.3) (2025-03-19)
 
 
