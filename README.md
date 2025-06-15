@@ -31,7 +31,7 @@ The project is in active development.
 > For V8 and above, the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/models`.  
 > For V7 and below using CudaInstallForToolKit (you need to run this first), the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/ct2`. Inside `ct2` folder, `ct2_models` need to be renamed to `ct2Model`.
 
-- Make sure to use Python 3.9 and above. Python 3.12 is recommended. Python 3.13 and above still not supported.
+- Make sure to use Python 3.12. Python 3.13 and above still not supported.
 
 ### Installation
 
