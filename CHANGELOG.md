@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.22.0](https://github.com/mddanish00/stas-server/compare/v0.21.0...v0.22.0) (2025-06-15)
+
+
+### Features
+
+* create global config object ([83a04ca](https://github.com/mddanish00/stas-server/commit/83a04caa2896d4ca269014b5d244d70018d76d20))
+* only support Python 3.12 ([c7ae466](https://github.com/mddanish00/stas-server/commit/c7ae4661d3105d2a31bb05daff5b0c598854d366))
+
+
+### Bug Fixes
+
+* fix mistake when loading config ([f80305f](https://github.com/mddanish00/stas-server/commit/f80305faba8f7afdbaf93db929852a97754fa05f))
+
 ## [0.21.0](https://github.com/mddanish00/stas-server/compare/v0.20.3...v0.21.0) (2025-04-23)
 
 
