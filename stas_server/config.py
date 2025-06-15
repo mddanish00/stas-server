@@ -1,11 +1,9 @@
 # Using The Global Object Pattern described on
 # https://python-patterns.guide/python/module-globals/.
-from pathlib import Path
-
 port = 14366
 cuda = False
 cache = False
-models_dir = Path("./models")
+models_dir = "./models"
 
 
 # Only loaded on startup
@@ -21,7 +19,7 @@ def loads(
         disable_cache (bool): Disable cache
     """
     global cuda, models_dir, port, cache
-    enable_cuda = enable_cuda
+    cuda = enable_cuda
     models_dir = models_dir_path
     port = server_port
     cache = not disable_cache
