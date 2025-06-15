@@ -26,12 +26,12 @@ The project is in active development.
 
 ### Requirements
 
-- Sugoi Japanese Toolkit from [MingShiba](https://www.patreon.com/mingshiba). Need to apply CudaInstallForToolKit from Sugoi Translator Discord if using version lower than V7 and below. Starting from V8, ct2Model available by default. Make sure to take note of the path to models folder.
+Sugoi Japanese Toolkit from [MingShiba](https://www.patreon.com/mingshiba). If you are using a version lower than V7, you need to apply CudaInstallForToolKit from the Sugoi Translator Discord. Starting from V8, ct2Model is available by default. Make sure to note the path to the models folder.
 
 > For V8 and above, the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/models`.  
-> For V7 and below using CudaInstallForToolKit (you need to run this first), the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/ct2`. Inside `ct2` folder, `ct2_models` need to be renamed to `ct2Model`.
+> For V7 and below using CudaInstallForToolKit (you need to run this first), the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/ct2`. Inside the `ct2` folder, `ct2_models` needs to be renamed to `ct2Model`.
 
-- Make sure to use Python 3.12. Python 3.13 and above still not supported.
+- Make sure to use Python 3.12. Python 3.13 and above are still not supported.
 
 ### Installation
 
@@ -49,29 +49,17 @@ You can also directly download the wheel in the [Releases](https://github.com/md
 uv tool install stas-server --index https://mddanish00.github.io/python-index/simple
 ```
 
-#### Install using pipx
-
-```commandline
-pipx install stas-server --index-url https://mddanish00.github.io/python-index/simple
-```
-
 ### Upgrade Server (outdated; not tested with python-index yet)
 
 #### Upgrade using uv
 
-Same as installation.
-
 ```commandline
-uv tool install ./stas_server-x.x.x-py3-none-any.whl
+uv tool upgrade stas-server
 ```
 
-#### Upgrade using pipx
+## pipx support
 
-Because this package is not installed from [pypi](https://pypi.org/), to upgrade this package, your need to force pipx to install the new version.
-
-```commandline
-pipx install --force ./stas_server-x.x.x-py3-none-any.whl
-```
+pipx is not officially supported. If you want to use it, just install using the wheel downloaded in the Release.
 
 ### Running Server
 
@@ -101,13 +89,13 @@ Options:
 
 This project is developed using the latest Python and managed by uv.
 
-To start developing for this project, make sure to install uv. It will automatically download uv-managed Python if your system Python not 3.12. It will not clash with your system Python because it is only used for this project.
+To start developing for this project, make sure to install uv. It will automatically download uv-managed Python if your system Python is not 3.12. It will not clash with your system Python because it is only used for this project.
 
 Refer to [uv official docs](https://docs.astral.sh/uv/getting-started/installation/) for the installation instructions.
 
 You need to make sure install ICU if in Linux yourself. For Windows, you need to use my python index to install PyICU.
 
-Initialize the virtual environment and install dependencies.
+Initialise the virtual environment and install dependencies.
 
 ```commandline
 uv sync
