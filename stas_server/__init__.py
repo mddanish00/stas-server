@@ -2,7 +2,7 @@ import logging
 
 import click
 
-from stas_server import translation, server
+from stas_server import config, translation, server
 
 import importlib.metadata
 
@@ -28,12 +28,11 @@ log_server = logging.getLogger("Server")
 )
 @click.argument("port", default=14366)
 def cli(cuda, models_dir, port, no_cache):
+    config.loads(cuda, models_dir, port, no_cache)
     log_server.info(f"stas-server - v{importlib.metadata.version('stas-server')}")
-    translation.setup_translation(cuda, models_dir)
+    translation.setup_translation()
     server.run_server(
         translation.translate,
         translation.translate_batch,
         translation.check_if_japanese_in_string,
-        port,
-        not no_cache,
     )

@@ -1,6 +1,7 @@
 from icu import Locale, BreakIterator
 import regex as re
 
+import stas_server.config as config
 from stas_server.util import lru_cache_ext
 
 locale = Locale("ja_JP")
@@ -22,16 +23,16 @@ def split_jp_core(text: str):
 
 newline_regex = re.compile(r"(\n+)")
 
-
+# This decorator will add enable_cache kwargs to the function; Only relevant to decorator.
 split_jp = lru_cache_ext(maxsize=None)(split_jp_core)
 
 
-def split_sentences_in_batch(text_list: list[str], enable_cache: bool):
+def split_sentences_in_batch(text_list: list[str]):
     final_text_list: list[str] = []
     text_map: list[int] = []
 
     for text in text_list:
-        split_text_list = [str(i) for i in split_jp(text, enable_cache=enable_cache)]
+        split_text_list = [str(i) for i in split_jp(text, enable_cache=config.cache)]
         final_text_list.extend(split_text_list)
         text_map.append(len(split_text_list))
 

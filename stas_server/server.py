@@ -5,6 +5,7 @@ from typing import Callable
 
 from bottle import Bottle, request, response
 
+import stas_server.config as config
 from stas_server.util import (
     process_raw_string,
     split_list_by_condition,
@@ -31,11 +32,9 @@ def route(**kwargs):
 
 
 def run_server(
-    translate_func: Callable[[str, bool], str],
-    translate_batch_func: Callable[[list[str], bool], list[str]],
+    translate_func: Callable[[str], str],
+    translate_batch_func: Callable[[list[str]], list[str]],
     check_func: Callable[[str], bool],
-    port: int = 14366,
-    enable_cache: bool = True,
 ):
     @app.hook("after_request")
     def enable_cors():
@@ -65,7 +64,7 @@ def run_server(
             content = process_raw_string(content)
             if check_func(content):
                 log_translation.info("Text is Japanese.")
-                result = translate_func(content, enable_cache)
+                result = translate_func(content)
                 return json.dumps(result)
             else:
                 log_translation.info("Text is not Japanese.")
@@ -86,7 +85,7 @@ def run_server(
                 return json.dumps(content)
             else:
                 log_translation.info("Japanese text found in the batch.")
-                result = translate_batch_func(sp, enable_cache)
+                result = translate_batch_func(sp)
                 final_result = recombine_split_list(result, le, ix)
                 return json.dumps(final_result)
 
@@ -94,5 +93,5 @@ def run_server(
             app.close()
             sys.exit(0)
 
-    log_server_bottle.info(f"Listening on http://localhost:{port}")
-    app.run(server="tornado", host="0.0.0.0", port=port, debug=False, quiet=True)
+    log_server_bottle.info(f"Listening on http://localhost:{config.port}")
+    app.run(server="tornado", host="0.0.0.0", port=config.port, debug=False, quiet=True)
