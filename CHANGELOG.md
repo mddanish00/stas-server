@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.1](https://github.com/mddanish00/stas-server/compare/v0.22.0...v0.22.1) (2025-06-15)
+
+
+### Documentation
+
+* update documentation for pipx ([92c49c2](https://github.com/mddanish00/stas-server/commit/92c49c2ebde429d7d5563353b1bd2327dea9d769))
+
 ## [0.22.0](https://github.com/mddanish00/stas-server/compare/v0.21.0...v0.22.0) (2025-06-15)
 
 
