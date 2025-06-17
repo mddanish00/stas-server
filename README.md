@@ -26,20 +26,18 @@ The project is in active development.
 
 ### Requirements
 
-Sugoi Japanese Toolkit from [MingShiba](https://www.patreon.com/mingshiba). If you are using a version lower than V7, you need to apply CudaInstallForToolKit from the Sugoi Translator Discord. Starting from V8, ct2Model is available by default. Make sure to note the path to the models folder.
+- Sugoi Japanese Toolkit from [MingShiba](https://www.patreon.com/mingshiba). If you are using a version lower than V7, you need to apply CudaInstallForToolKit from the Sugoi Translator Discord. Starting from V8, ct2Model is available by default. Make sure to note the path to the models folder.
 
 > For V8 and above, the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/models`.  
 > For V7 and below using CudaInstallForToolKit (you need to run this first), the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/ct2`. Inside the `ct2` folder, `ct2_models` needs to be renamed to `ct2Model`.
 
-- Make sure to use Python 3.12. Python 3.13 and above are still not supported.
+- Python 3.12 recommended. For Python 3.13, you **absolutely** need to use [my Python Package Index](https://mddanish00.github.io/python-index/simple). Python 3.14 and above are still not supported.
 
 ### Installation
 
-This project is not intended as a library, so installation through `uv` and `pipx` is recommended.
+This project is not intended as a library, so installation through `uv` is recommended.
 
-In the future, the package will be published to [pypi](https://pypi.org/) for easier installation. No guarantee through.
-
-For now, use my Python Package Index as shown as below to install this package.
+It is recommended to use [my Python Package Index](https://mddanish00.github.io/python-index/simple) for as shown as below to install this package.
 
 You can also directly download the wheel in the [Releases](https://github.com/mddanish00/stas-server/releases) and install the package.
 
@@ -49,17 +47,13 @@ You can also directly download the wheel in the [Releases](https://github.com/md
 uv tool install stas-server --index https://mddanish00.github.io/python-index/simple
 ```
 
-### Upgrade Server (outdated; not tested with python-index yet)
+### Upgrade Server
 
 #### Upgrade using uv
 
 ```commandline
 uv tool upgrade stas-server
 ```
-
-## pipx support
-
-pipx is not officially supported. If you want to use it, just install using the wheel downloaded in the Release.
 
 ### Running Server
 
@@ -89,7 +83,7 @@ Options:
 
 This project is developed using the latest Python and managed by uv.
 
-To start developing for this project, make sure to install uv. It will automatically download uv-managed Python if your system Python is not 3.12. It will not clash with your system Python because it is only used for this project.
+To start developing for this project, make sure to install uv. It will automatically download uv-managed Python if your system Python is not 3.13. It will not clash with your system Python because it is only used for this project.
 
 Refer to [uv official docs](https://docs.astral.sh/uv/getting-started/installation/) for the installation instructions.
 

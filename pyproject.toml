@@ -15,7 +15,7 @@ dependencies = [
     "pyicu>=2.15",
 ]
 readme = "README.md"
-requires-python = ">= 3.12, < 3.13"
+requires-python = ">= 3.12, < 3.14"
 license = { text = "MIT" }
 
 [project.scripts]
@@ -28,6 +28,9 @@ build-backend = "hatchling.build"
 [tool.uv]
 managed = true
 dev-dependencies = []
+
+[[tool.uv.index]]
+url = "https://mddanish00.github.io/python-index/simple"
 
 [tool.hatch.metadata]
 allow-direct-references = true
