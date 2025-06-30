@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.0](https://github.com/mddanish00/stas-server/compare/v0.23.0...v0.24.0) (2025-06-30)
+
+
+### Features
+
+* recognise sentence that ends with comma ([95baccc](https://github.com/mddanish00/stas-server/commit/95baccce76c84239622351313194bffb5a3a816e))
+
 ## [0.23.0](https://github.com/mddanish00/stas-server/compare/v0.22.1...v0.23.0) (2025-06-17)
 
 
