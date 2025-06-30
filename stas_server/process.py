@@ -71,13 +71,14 @@ def get_original_state(text: str):
     is_bracket = (text.endswith("」") and text.startswith("「")) or (
         text.endswith("』") and text.startswith("『")
     )
-    is_period = text.endswith("。")
+    is_period = text.endswith("。") or text.endswith("、")
     return is_bracket, is_period
 
 
 def restore_original_state(text: str, is_bracket: bool, is_period: bool):
     if (
         not text.endswith(".")
+        and not text.endswith(",")
         and not text.endswith("?")
         and not text.endswith("!")
         and is_period
