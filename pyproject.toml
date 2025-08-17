@@ -9,7 +9,6 @@ dependencies = [
     "bottle>=0.12.25",
     "ctranslate2>=4.2.1",
     "sentencepiece>=0.2.0",
-    "click>=8.1.7",
     "regex>=2024.4.28",
     "tornado>=6.4.1",
     "pyicu>=2.15",
