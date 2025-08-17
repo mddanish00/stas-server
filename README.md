@@ -58,17 +58,20 @@ uv tool upgrade stas-server
 ### Running Server
 
 ```cmd
-Usage: stas-server [OPTIONS] [PORT]
+usage: stas-server [OPTIONS] [PORT]
 
-  Run stas-server, an alternative standalone translation server for Sugoi
-  Translator.
+Run stas-server, an alternative standalone translation server for Sugoi Translator.
 
-Options:
-  -v, --version           Show the version and exit.
-  --cuda                  Enable CUDA.
-  --no-cache              Disable cache.
-  --models_dir DIRECTORY  Path to models folder.  [required]
-  -h, --help              Show this message and exit.
+positional arguments:
+  port                  Port to listen on. (default: 14366)
+
+options:
+  -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
+  --cuda                Enable CUDA. (default: False)
+  --no-cache            Disable cache. (default: False)
+  --models_dir MODELS_DIR
+                        Path to models folder. (default: None)
 ```
 
 #### Options
