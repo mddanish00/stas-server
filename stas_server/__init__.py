@@ -15,7 +15,6 @@ current_version = version("stas-server")
 def get_arguments() -> tuple[bool, str, int, bool]:
     parser = argparse.ArgumentParser(
         description="Run stas-server, an alternative standalone translation server for Sugoi Translator.",
-        usage="%(prog)s [OPTIONS] [PORT]",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
