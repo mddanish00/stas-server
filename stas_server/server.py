@@ -59,7 +59,7 @@ def run_server(
                 log_translation.info("Text is not Japanese.")
                 return web.json_response(content)
 
-        if message == "translate batch":
+        elif message == "translate batch":
             content = data.get("batch")
             log_server.info("Receive content batch from server")
 
@@ -78,9 +78,14 @@ def run_server(
                 final_result = recombine_split_list(result, le, ix)
                 return web.json_response(final_result)
 
-        if message == "close server":
-            app.shutdown()
+        elif message == "close server":
+            log_server.info("Recieved close server message. Exiting...")
             sys.exit(0)
+
+        else:
+            log_server.error(f"Unknown message: {message}")
+
+        return web.json_response({"error": f"Unknown message: {message}"}, status=400)
 
     app = web.Application(middlewares=[cors_middleware])
     app.add_routes(
@@ -90,4 +95,6 @@ def run_server(
         ]
     )
     log_server.info(f"Listening on http://localhost:{config.port}")
-    web.run_app(app, port=config.port, access_log=log_server, print=None)
+    web.run_app(
+        app, host="0.0.0.0", port=config.port, access_log=log_server, print=None
+    )
