@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.25.0](https://github.com/mddanish00/stas-server/compare/v0.24.0...v0.25.0) (2025-08-23)
+
+
+### Features
+
+* migrate from bottle.py to aiohttp ([9925f07](https://github.com/mddanish00/stas-server/commit/9925f07965269b4669658d92c7b8308a5328c958))
+* use argparse instead of click for CLI ([5eeaf57](https://github.com/mddanish00/stas-server/commit/5eeaf57d622245a96388c967c252337751ff08d9))
+
+
+### Bug Fixes
+
+* explicitly specify host as 0.0.0.0 in case of default change ([cffee2f](https://github.com/mddanish00/stas-server/commit/cffee2f8825aae12fd803f3c72edde880b9df6e7))
+* handle unknown message ([cffee2f](https://github.com/mddanish00/stas-server/commit/cffee2f8825aae12fd803f3c72edde880b9df6e7))
+* remove chances of multiple block execute in translate_text ([cffee2f](https://github.com/mddanish00/stas-server/commit/cffee2f8825aae12fd803f3c72edde880b9df6e7))
+
+
+### Documentation
+
+* update with current usage help message ([82003c9](https://github.com/mddanish00/stas-server/commit/82003c9c8a07ac43143e4c386d6be49d9696a79a))
+* update with new CLI help message ([5eeaf57](https://github.com/mddanish00/stas-server/commit/5eeaf57d622245a96388c967c252337751ff08d9))
+
 ## [0.24.0](https://github.com/mddanish00/stas-server/compare/v0.23.0...v0.24.0) (2025-06-30)
 
 
