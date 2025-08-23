@@ -6,12 +6,11 @@ authors = [
     { name = "Muhd. Danial Danish Roslan", email = "distantwaterstream@gmail.com" }
 ]
 dependencies = [
-    "bottle>=0.12.25",
     "ctranslate2>=4.2.1",
     "sentencepiece>=0.2.0",
     "regex>=2024.4.28",
-    "tornado>=6.4.1",
     "pyicu>=2.15",
+    "aiohttp>=3.12.15",
 ]
 readme = "README.md"
 requires-python = ">= 3.12, < 3.14"
