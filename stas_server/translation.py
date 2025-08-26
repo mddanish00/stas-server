@@ -9,7 +9,6 @@ from ctranslate2 import Translator
 
 import stas_server.config as config
 from stas_server.util import (
-    lru_cache_ext,
     split_list_by_condition,
     flatten_2d_list,
     recombine_split_list,
@@ -73,8 +72,6 @@ def setup_translation():
     )
 
 
-# This decorator will add enable_cache kwargs to the function; Only relevant to decorator.
-@lru_cache_ext(maxsize=None)
 def core_translator(text_list: list[str]):
     text_list = spe.Encode(text_list, out_type=str)
     result = translator.translate_batch(
@@ -102,7 +99,7 @@ def common_translator(batch_content: list[str]):
             strip_bracket(c) if in_queue_state[i][0] else c
             for i, c in enumerate(in_queue_list)
         ]
-        result_list = core_translator(in_queue_list, enable_cache=config.cache)
+        result_list = core_translator(in_queue_list)
         log_translation.info(f"Result In Queue: {result_list}")
         result_list = [post_clean(r) for r in result_list]
         result_list = [
@@ -117,7 +114,7 @@ def common_translator(batch_content: list[str]):
             for i, r in enumerate(result_list)
         ]
     else:
-        result_list = core_translator(in_queue_list, enable_cache=config.cache)
+        result_list = core_translator(in_queue_list)
         result_list = [post_clean(result_list[0])]
         result = restore_original_state(
             result_list[0],
