@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.26.0](https://github.com/mddanish00/stas-server/compare/v0.25.0...v0.26.0) (2025-08-26)
+
+
+### Features
+
+* add util func split_list_by_async_condition for usage with async ([926daf0](https://github.com/mddanish00/stas-server/commit/926daf0458b3b157e5561d41fc8b6abbb8c90e22))
+* implement caching using aiocache ([926daf0](https://github.com/mddanish00/stas-server/commit/926daf0458b3b157e5561d41fc8b6abbb8c90e22))
+* remove lru_cache_ext and related logic ([54f1129](https://github.com/mddanish00/stas-server/commit/54f112918b75a6dbaf707f24804e16a761101ec8))
+
+
+### Bug Fixes
+
+* fix caching race condition and bug in batch req ([1a446dd](https://github.com/mddanish00/stas-server/commit/1a446dd0f96daab34089ee2f48bafa6852c9bee4))
+
 ## [0.25.0](https://github.com/mddanish00/stas-server/compare/v0.24.0...v0.25.0) (2025-08-23)
 
 
