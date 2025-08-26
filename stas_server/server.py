@@ -3,16 +3,23 @@ import logging
 from typing import Awaitable, Callable
 
 from aiohttp import web
+from aiocache import SimpleMemoryCache
 
 import stas_server.config as config
 from stas_server.util import (
     process_raw_string,
+    split_list_by_async_condition,
     split_list_by_condition,
     recombine_split_list,
 )
 
 log_server = logging.getLogger("Server")
 log_translation = logging.getLogger("Translation")
+translation_cache = SimpleMemoryCache()
+
+
+async def check_if_cache_exists(text: str) -> bool:
+    return await translation_cache.exists(hash(text)) if config.cache else False
 
 
 def run_server(
@@ -53,7 +60,17 @@ def run_server(
             content = process_raw_string(content)
             if check_func(content):
                 log_translation.info("Text is Japanese.")
-                result = translate_func(content)
+                is_in_cache = await check_if_cache_exists(content)
+                if is_in_cache:
+                    log_translation.info("Text is in cache.")
+                result = (
+                    translate_func(content)
+                    if not is_in_cache
+                    else await translation_cache.get(hash(content))
+                )
+                if config.cache and not is_in_cache:
+                    await translation_cache.set(hash(content), result)
+                log_translation.info(f"Result: {result}")
                 return web.json_response(result)
             else:
                 log_translation.info("Text is not Japanese.")
@@ -68,18 +85,39 @@ def run_server(
                 return web.json_response(content)
 
             sp, le, ix = split_list_by_condition(content, check_func)
-            sp = list(map(process_raw_string, sp))
+            sp = [process_raw_string(s) for s in sp]
+
             if len(sp) == 0:
                 log_translation.info("All text in the batch are not Japanese.")
                 return web.json_response(content)
             else:
                 log_translation.info("Japanese text found in the batch.")
-                result = translate_batch_func(sp)
+                (
+                    cached_list,
+                    rest_list,
+                    index_cached_list,
+                ) = await split_list_by_async_condition(sp, check_if_cache_exists)
+
+                if len(cached_list) > 0:
+                    log_translation.info("Text in batch found in cache.")
+
+                result = []
+                if len(rest_list) > 0:
+                    result = translate_batch_func(rest_list)
+                    if config.cache:
+                        assert len(rest_list) == len(result)
+                        await translation_cache.multi_set(
+                            zip([hash(r) for r in rest_list], result)
+                        )
+
+                assert (len(cached_list) + len(result)) == len(index_cached_list)
+                result = recombine_split_list(cached_list, result, index_cached_list)
                 final_result = recombine_split_list(result, le, ix)
                 return web.json_response(final_result)
 
         elif message == "close server":
             log_server.info("Recieved close server message. Exiting...")
+            translation_cache.close()
             sys.exit(0)
 
         else:

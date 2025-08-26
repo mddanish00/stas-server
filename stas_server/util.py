@@ -1,4 +1,5 @@
-from typing import Callable, Literal
+import asyncio
+from typing import Callable, Awaitable, Literal
 
 
 def process_raw_string(text: str):
@@ -12,6 +13,27 @@ def split_list_by_condition[T](obj_list: list[T], condition: Callable[[T], bool]
 
     for o in obj_list:
         if condition(o):
+            split_list.append(o)
+            list_index.append("D")
+        else:
+            leftover_list.append(o)
+            list_index.append("L")
+
+    return split_list, leftover_list, list_index
+
+
+async def split_list_by_async_condition[T](
+    obj_list: list[T], condition: Callable[[T], Awaitable[bool]]
+):
+    split_list: list[T] = []
+    leftover_list: list[T] = []
+    list_index: list[Literal["D", "L"]] = []
+
+    tasks = [condition(o) for o in obj_list]
+    results = await asyncio.gather(*tasks)
+
+    for i, o in enumerate(obj_list):
+        if results[i]:
             split_list.append(o)
             list_index.append("D")
         else:
