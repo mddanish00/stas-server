@@ -1,5 +1,4 @@
-from functools import _CacheInfo, lru_cache
-from typing import Any, Callable, Literal, ParamSpec, TypeVar
+from typing import Callable, Literal
 
 
 def process_raw_string(text: str):
@@ -46,72 +45,3 @@ def deflate_flat_list[T](flat_list: list[T], list_index: list[int]):
         current_pointer += item
 
     return deflate_list
-
-
-# Based on solution of this question on StackOverflow
-# https://stackoverflow.com/a/73517775
-def hash_list(li: list) -> int:
-    __hash = 0
-    for i, e in enumerate(li):
-        __hash = hash((__hash, i, hash_item(e)))
-    return __hash
-
-
-def hash_item(e) -> int:
-    if hasattr(e, "__hash__") and callable(e.__hash__):
-        try:
-            return hash(e)
-        except TypeError:
-            pass
-    if isinstance(e, (list, set, tuple)):
-        return hash_list(list(e))
-    else:
-        raise TypeError(f"unhashable type: {e.__class__}")
-
-
-PT = ParamSpec("PT")
-RT = TypeVar("RT")
-
-
-def lru_cache_ext(
-    *opts, hashfunc: Callable[..., int] = hash_item, **kwopts
-) -> Callable[[Callable[PT, RT]], Callable[PT, RT]]:
-    def decorator(func: Callable[PT, RT]) -> Callable[PT, RT]:
-        class _lru_cache_ext_wrapper:
-            args: tuple
-            kwargs: dict[str, Any]
-
-            def cache_info(self) -> _CacheInfo: ...
-            def cache_clear(self) -> None: ...
-
-            @classmethod
-            @lru_cache(*opts, **kwopts)
-            def cached_func(cls, args_hash: int) -> RT:
-                return func(*cls.args, **cls.kwargs)
-
-            @classmethod
-            def __call__(cls, *args: PT.args, **kwargs: PT.kwargs) -> RT:
-                if kwargs.get("enable_cache"):
-                    kwargs.pop("enable_cache")
-                    __hash = hashfunc(
-                        (
-                            id(func),
-                            *[hashfunc(a) for a in args],
-                            *[(hashfunc(k), hashfunc(v)) for k, v in kwargs.items()],
-                        )
-                    )
-
-                    cls.args = args
-                    cls.kwargs = kwargs
-
-                    cls.cache_info = cls.cached_func.cache_info
-                    cls.cache_clear = cls.cached_func.cache_clear
-
-                    return cls.cached_func(__hash)
-                else:
-                    kwargs.pop("enable_cache")
-                    return func(*args, **kwargs)
-
-        return _lru_cache_ext_wrapper()
-
-    return decorator
