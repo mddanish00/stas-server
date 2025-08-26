@@ -60,16 +60,19 @@ def run_server(
             content = process_raw_string(content)
             if check_func(content):
                 log_translation.info("Text is Japanese.")
-                is_in_cache = await check_if_cache_exists(content)
-                if is_in_cache:
+                
+                key = hash(content)
+                result = None
+                if config.cache:
+                    result = await translation_cache.get(key)
+
+                if result is not None:
                     log_translation.info("Text is in cache.")
-                result = (
-                    translate_func(content)
-                    if not is_in_cache
-                    else await translation_cache.get(hash(content))
-                )
-                if config.cache and not is_in_cache:
-                    await translation_cache.set(hash(content), result)
+                else:
+                    result = translate_func(content)
+                    if config.cache:
+                        await translation_cache.set(key, result)
+
                 log_translation.info(f"Result: {result}")
                 return web.json_response(result)
             else:
@@ -101,17 +104,26 @@ def run_server(
                 if len(cached_list) > 0:
                     log_translation.info("Text in batch found in cache.")
 
-                result = []
+                # Fetch translations from cache
+                cached_results = []
+                if config.cache and len(cached_list) > 0:
+                    cached_results = await translation_cache.multi_get(
+                        [hash(t) for t in cached_list]
+                    )
+
+                # Translate new texts
+                new_results = []
                 if len(rest_list) > 0:
-                    result = translate_batch_func(rest_list)
+                    new_results = translate_batch_func(rest_list)
                     if config.cache:
-                        assert len(rest_list) == len(result)
+                        assert len(rest_list) == len(new_results)
                         await translation_cache.multi_set(
-                            zip([hash(r) for r in rest_list], result)
+                            zip([hash(r) for r in rest_list], new_results)
                         )
 
-                assert (len(cached_list) + len(result)) == len(index_cached_list)
-                result = recombine_split_list(cached_list, result, index_cached_list)
+                result = recombine_split_list(
+                    cached_results, new_results, index_cached_list
+                )
                 final_result = recombine_split_list(result, le, ix)
                 return web.json_response(final_result)
 
