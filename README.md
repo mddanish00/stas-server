@@ -31,7 +31,7 @@ The project is in active development.
 > For V8 and above, the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/models`.  
 > For V7 and below using CudaInstallForToolKit (you need to run this first), the usual path is `[EXTRACTEDFOLDER]/Code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/ct2`. Inside the `ct2` folder, `ct2_models` needs to be renamed to `ct2Model`.
 
-- Python 3.12 recommended. For Python 3.13, you **absolutely** need to use [my Python Package Index](https://mddanish00.github.io/python-index/simple). Python 3.14 and above are still not supported.
+- Python 3.12 - 3.14 supported. Python 3.15 and above are still not supported.
 
 ### Installation
 
@@ -86,16 +86,16 @@ options:
 
 This project is developed using the latest Python and managed by uv.
 
-To start developing for this project, make sure to install uv. It will automatically download uv-managed Python if your system Python is not 3.13. It will not clash with your system Python because it is only used for this project.
+To start developing for this project, make sure to install uv. It will automatically download uv-managed Python if your system Python is not as the same with the highest supported Python version. It will not clash with your system Python because it is only used for this project.
 
 Refer to [uv official docs](https://docs.astral.sh/uv/getting-started/installation/) for the installation instructions.
 
 You need to make sure install ICU if in Linux yourself. For Windows, you need to use my python index to install PyICU.
 
-Initialise the virtual environment and install dependencies.
+Initialise the virtual environment and install dependencies. Replace X with whatever latest supported version.
 
 ```commandline
-uv sync
+uv sync --python 3.X
 ```
 
 Launch and test the server.
