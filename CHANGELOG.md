@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.27.0](https://github.com/mddanish00/stas-server/compare/v0.26.0...v0.27.0) (2025-11-21)
+
+
+### Features
+
+* change build backend to uv_build ([8f3a3df](https://github.com/mddanish00/stas-server/commit/8f3a3df57a185816fd8ef6e2c31d7999e706147e))
+* expand support to Python 3.14 ([450299a](https://github.com/mddanish00/stas-server/commit/450299aab9e3f9be5a581017f72e8f6d9f370f76))
+
+
+### Bug Fixes
+
+* include LICENSE when using new build backend ([354e6d2](https://github.com/mddanish00/stas-server/commit/354e6d28754166a3b9d18237fe71deda8aa78f72))
+
 ## [0.26.0](https://github.com/mddanish00/stas-server/compare/v0.25.0...v0.26.0) (2025-08-26)
 
 
